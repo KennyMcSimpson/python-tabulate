@@ -3,6 +3,7 @@
   Add support of the `Decimal` data type.
   Improve output of `github` and `asciidoc` formats.
   Add support of CSV and JSONL input data in CLI utility.
+  Preserve text for numbers that overflow floating-point conversion instead of raising OverflowError.
   Always add `text-align: left` in HTML output.
   Various bug fixes.
 - 0.10.0: Add support for Python 3.11, 3.12, 3.13, 3.14.

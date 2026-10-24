@@ -1,8 +1,29 @@
 """Regression tests."""
 
+from fractions import Fraction
+
+import pytest
+
 from tabulate import DataRow, Line, TableFormat, tabulate
 
 from common import assert_equal, skip
+
+
+@pytest.mark.parametrize("sign", [1, -1])
+def test_large_integer_in_float_column(sign):
+    value = sign * 10**400
+    result = tabulate([[value], [1.5]], tablefmt="plain", floatfmt=".2f")
+    assert result.split() == [str(value), "1.50"]
+
+
+@pytest.mark.parametrize("sign", [1, -1])
+def test_fraction_outside_float_range(sign):
+    value = Fraction(sign * 10**400, 3)
+    assert tabulate([[value]], tablefmt="plain") == str(value)
+
+
+def test_fraction_inside_float_range():
+    assert tabulate([[Fraction(1, 3)]], tablefmt="plain", floatfmt=".2f") == "0.33"
 
 
 def test_ansi_color_in_table_cells():

@@ -743,6 +743,9 @@ h     e   a      d   e     r
 
 ### Number formatting
 
+If converting a numeric value to a float raises `OverflowError`, `tabulate`
+preserves its string representation.
+
 `tabulate` allows to define custom number formatting applied to all
 columns of decimal numbers. Use `floatfmt` named argument:
 

@@ -869,7 +869,7 @@ def _isconvertible(conv, string):
     try:
         conv(string)
         return True
-    except (ValueError, TypeError):
+    except (ValueError, TypeError, OverflowError):
         return False
 
 
@@ -1352,7 +1352,7 @@ def _format(val, valtype, floatfmt, intfmt, missingval="", has_invisible=True):
                 return format(val, floatfmt)
             try:
                 return format(float(val), floatfmt)
-            except (ValueError, TypeError):
+            except (ValueError, TypeError, OverflowError):
                 return f"{val}"
     else:
         return f"{val}"
